@@ -1,16 +1,23 @@
+
 # JSON_BD
 Solução para inserir arquivo JSON no banco de dados PostgreSQL com Python.
 Pois preciso utilizar o mecanismo de busca elastic search para consultar os dados no banco e as informações nesse banco através da tabela 'movies' foi esse conteúdo do JSON.
 PASSOS: 
 Estruturas de pastas:
-.
+
+PASTA RAIZ
+
 ├── docker-compose.yml
-├── python-service
+
+PASTA -> python-service
+
 │   ├── Dockerfile
 │   ├── requirements.txt
 │   └── insert_data.py
-└── scripts
-    └── seu_arquivo.json
+
+PASTA -> scripts
+
+── seu_arquivo.json
     
 Acompanhe os arquivos para compreender a estrutura de cada um.
 
