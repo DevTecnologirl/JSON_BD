@@ -1,0 +1,62 @@
+version: "3.8"
+services:
+  elasticsearch01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    container_name: elasticsearch01
+    ports: 
+      - 9200:9200
+      - 9300:9300
+    environment:
+      discovery.type: single-node
+    networks:
+      - elastic
+  
+  kibana01:
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    container_name: kibana01
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch01:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch01:9200
+    networks:
+      - elastic
+
+  postgres:
+    image: postgres:13.5
+    container_name: elasticsearchdb
+    environment:
+      POSTGRES_USER: elastic
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: elasticdb
+    ports:
+      - "5432:5432"
+    networks:
+      - elastic
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    networks:
+      - elastic
+
+  python:
+    build:
+      context: ./python-service
+    depends_on:
+      - postgres
+    volumes:
+      - ./scripts:/scripts
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge
