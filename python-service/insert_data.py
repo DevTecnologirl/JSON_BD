@@ -4,9 +4,9 @@ import psycopg2
 # Configurações do banco de dados PostgreSQL
 db_host = 'postgres'  # Nome do serviço do PostgreSQL no Docker Compose
 db_port = '5432'
-db_name = 'elasticdb'
-db_user = 'elastic'
-db_password = 'root'
+db_name = 'NOME_BANCO'
+db_user = 'NOME_USER'
+db_password = 'SENHA'
 
 # Função para inserir dados do JSON no PostgreSQL
 def insert_data_from_json(filename):
