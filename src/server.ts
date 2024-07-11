@@ -9,9 +9,9 @@ app.get('/', async (request: Request, response: Response) => {
         index: 'elastic_teste', //definindo nome do index
         type:  'type_elastic_teste', //definindo tipo
         body: {
-            user: 'Camilly',
-            password: 'Indra123',
-            email: 'csouzadu@minsait.com'
+            user: 'USER',
+            password: 'SENHA',
+            email: 'EMAIL'
         }
     });
 
